@@ -4,4 +4,6 @@
 2. minikube
 3. Terraform
 4. A Web browser
+5. A Hypervisor - VirtualBox in this case
 ## Setup Guidelines
+1. 
