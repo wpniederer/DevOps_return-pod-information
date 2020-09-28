@@ -9,7 +9,7 @@
 // }
 
 data "local_file" "minikube-ip" {
-  filename = "../config_files/minikube-ip.txt"
+  filename = "../../config_files/minikube-ip.txt"
 }
 
 provider "kubernetes" {
@@ -27,19 +27,21 @@ resource "kubernetes_deployment" "pod-details-app" {
         App = "pod-details-app"
       }
     }
+
     template {
       metadata {
         labels = {
           App = "pod-details-app"
         }
       }
+
       spec {
         container {
-          image = "nginx"
-          name  = "placeholder_app"
+          image = "wpniederer/return-pod-details-app:latest"
+          name  = "pod-details-image"
 
           port {
-            container_port = 80
+            container_port = 8080
           }
 
           resources {
@@ -58,13 +60,14 @@ resource "kubernetes_service" "pod-details-app-lb" {
   metadata {
     name = "pod-details-lb"
   }
+
   spec {
     selector = {
       App = "pod-details-app"
     }
     port {
       port        = 80
-      target_port = 80
+      target_port = 8080
     }
 
     type         = "LoadBalancer"
@@ -72,6 +75,6 @@ resource "kubernetes_service" "pod-details-app-lb" {
   }
 }
 
-output "lb_ip" {
-  value = kubernetes_service.pod-details-app-lb.load_balancer_ingress[0].ip
-}
+// output "lb_ip" {
+//  value = kubernetes_service.pod-details-app-lb.load_balancer_ingress[0].ip
+// }

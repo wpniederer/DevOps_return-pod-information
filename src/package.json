@@ -1,0 +1,11 @@
+{
+  "name": "pod-details-app",
+  "version": "1.0.0",
+  "main": "app/PodServer.js",
+  "scripts": {
+    "start": "node app/PodServer.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
