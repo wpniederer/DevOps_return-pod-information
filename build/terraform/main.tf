@@ -1,13 +1,3 @@
-// resource "null_resource" "start-minikube" {
-//  provisioner "local-exec" {
-//    command = "minikube start"
-// }
-
-//  provisioner "local-exec" {
-//    command = "minikube ip > minikube-ip.txt"
-// }
-// }
-
 data "local_file" "minikube-ip" {
   filename = "../../config_files/minikube-ip.txt"
 }
@@ -56,9 +46,9 @@ resource "kubernetes_deployment" "pod-details-app" {
   }
 }
 
-resource "kubernetes_service" "pod-details-app-lb" {
+resource "kubernetes_service" "pod-details-node-port" {
   metadata {
-    name = "pod-details-lb"
+    name = "pod-details-node-port"
   }
 
   spec {
@@ -68,13 +58,14 @@ resource "kubernetes_service" "pod-details-app-lb" {
     port {
       port        = 80
       target_port = 8080
+      node_port   = 31111
     }
 
-    type         = "LoadBalancer"
+    type         = "NodePort"
     external_ips = [chomp(data.local_file.minikube-ip.content)]
   }
 }
 
-// output "lb_ip" {
-//  value = kubernetes_service.pod-details-app-lb.load_balancer_ingress[0].ip
-// }
+output "node_port_ip" {
+  value = kubernetes_service.pod-details-node-port.spec[0].external_ips
+}
