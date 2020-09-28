@@ -4,7 +4,7 @@
 2. minikube, must be running
 3. Terraform cli
 4. A minikube-ip.txt file with the minikube ip
-4. A Web browser
+5. A Web browser
 ## Setup Guidelines
-1. Assumes that you are running from within the src directory
-2. Run minikube ip > ../config_files/minikube-ip.txt 
+1. Assumes that you are running from within the build/terraform/ directory
+2. Run minikube ip > ../../config_files/minikube-ip.txt 
