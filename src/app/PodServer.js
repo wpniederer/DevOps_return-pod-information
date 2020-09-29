@@ -24,6 +24,9 @@ const getAddress = () => {
 // App
 const app = express();
 app.get('/', (req, res) => {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
     res.send(`Hello World! Pod IP is ${getAddress()[0]} and Pod ID is ${os.hostname()}`);
 });
 
