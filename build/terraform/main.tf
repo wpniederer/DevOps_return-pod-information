@@ -55,15 +55,18 @@ resource "kubernetes_service" "pod-details-node-port" {
     selector = {
       App = "pod-details-app"
     }
+
     port {
       port        = 80
       target_port = 8080
       node_port   = 31111
     }
 
-    type         = "NodePort"
-    external_ips = [chomp(data.local_file.minikube-ip.content)]
+    session_affinity = "None"
+    type             = "NodePort"
+    external_ips     = [chomp(data.local_file.minikube-ip.content)]
   }
+
 }
 
 output "node_port_ip" {
