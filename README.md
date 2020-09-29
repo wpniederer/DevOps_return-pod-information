@@ -9,7 +9,7 @@
 1. Assumes that you are running from within the "build/terraform/" directory
 2. Start minikube: minikube start
 3. Run minikube ip > ../../config_files/minikube-ip.txt 
-4 Initialize terraform: terraform init
+4. Initialize terraform: terraform init
 5. Build using terraform: terraform apply (can optionally run with --auto-approve)
 ## Link to Docker repository 
 https://hub.docker.com/repository/docker/wpniederer/return-pod-details-app/general
