@@ -11,6 +11,7 @@
 3. Run minikube ip > ../../config_files/minikube-ip.txt 
 4. Initialize terraform: terraform init
 5. Build using terraform: terraform apply (can optionally run with --auto-approve)
+6. Navigate to the IP address returned as output of the terraform apply command
 ## Link to Docker repository 
 https://hub.docker.com/repository/docker/wpniederer/return-pod-details-app/general
 ## Instructions for what needs to be changed to deploy to AWS EKS
